@@ -3,10 +3,10 @@
 export interface ICourseData{
     id: number | null;
     name: string | null;
-    teacherid: number | null;
-    studentcount: number | null;
-    startdate?: Date | null;
-    enddate?: Date | null;
+    teacherID: number | null;
+    studentCount: number | null;
+    startDate: Date | null;
+    endDate: Date | null;
     notes?: string | null;
     staff: string | null;
     position: string | null;

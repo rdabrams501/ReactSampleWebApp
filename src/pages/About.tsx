@@ -24,7 +24,7 @@ function About()
         <div className="p-2">
             <h6>Sources:</h6>
             <p>
-                Github repo for the Web App: <a href="https://github.com/rdabrams501/Angular20WebApp">School Web App source</a> <br/>
+                Github repo for the Web App: <a href="https://github.com/rdabrams501/ReactSampleWebApp">School Web App source</a> <br/>
                 Github repo for the REST API: <a href="https://github.com/rdabrams501/.Net-Core-REST-API">REST API source</a>
             </p>
         </div>

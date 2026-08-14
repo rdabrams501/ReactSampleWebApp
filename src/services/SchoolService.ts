@@ -7,7 +7,7 @@ export async function fetchData (url: string) {
             //console.log(dataJsonList);
             return dataJsonList;
         } 
-        catch (error) {
+        catch (error: any) {
             if(error.message.includes("Failed to fetch"))
             {
                 alert('Failure to connect to API! Azure web app may not be running please contact website admin.');

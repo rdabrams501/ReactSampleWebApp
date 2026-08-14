@@ -1,32 +1,22 @@
 import { useEffect, useState } from "react";
 import type { ICourseData } from "../services/ICourseData";
 
-    //not reuseable will need to refactor ONLY FOR TESTING PURPOSES!!!
-function CourseList({ course })
-{
 
-    //PAGE RENDERING IS WRONG NEEDS TO MANAGE STATE
-    const [courseList, setCourseList] = useState([]);
+function CourseList({course} : {course: ICourseData[]})
+{
+    const [courseList, setCourseList] = useState<ICourseData[]>([]);
 
 
     useEffect(() => {
         console.log(course);
         if(course !== undefined)
         {
-
             setCourseList([...course]);
         } 
     }, [course]);
 
-    //TRY THIS AGAIN LATER TO FIGURE OUT HOW TO HANDLE CASE
-    /*useEffect(() => {
-        
-    fetchCourses();
-    },[fetch]);*/
-
     return (
         <>
-        {courseList.length === 0 && <div className="text-danger fw-bold text-center">Request yielded no results! Please try again.</div>}
         <div className="m-3">
             <table className="table table-striped table-hover">
                 <thead>
@@ -52,8 +42,8 @@ function CourseList({ course })
                         <td>{item.name}</td>
                         <td>{item.teacherID}</td>
                         <td>{item.studentCount}</td>
-                        <td>{item.startDate}</td>
-                        <td>{item.endDate}</td>
+                        <td>{item.startDate?.toString()}</td>
+                        <td>{item.endDate?.toString()}</td>
                         <td>{item.notes}</td>
                         <td>{item.staff}</td>
                         <td>{item.position}</td>

@@ -1,12 +1,15 @@
-import { useState } from "react";
-import type { ICourseData } from "../services/ICourseData";
 
-function CourseForm( {sendFormDataToParent})
+
+type CourseFormProps = {
+    sendFormDataToParent: (courseId: number, staffName: string, studentNum: number) => void;
+};
+
+function CourseForm({ sendFormDataToParent }: CourseFormProps)
 {
-     function handleOnSubmit(e)
+     function handleOnSubmit(e: any)
      {
         e.preventDefault();
-        const formData = new FormData(e.target);
+        const formData = new FormData(e.currentTarget);
 
         const rawCourseId = formData.get("courseId");
         const rawStaffName = formData.get("staffName");

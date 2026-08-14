@@ -8,6 +8,7 @@ function Courses()
 {
     const [courseData, setCourseData] = useState<ICourseData[]>([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [isCourseLoaded, setIsCourseLoaded] = useState(false);
     
     const fetchCourses = async (cId: number, tName: string, sNum: number) => {
         try {
@@ -17,6 +18,7 @@ function Courses()
             const courses = await fetchData(urlPasser);
             setCourseData(courses);
             setIsLoading(false);
+            setIsCourseLoaded(true);
         } catch (error) {
             alert(error);
             console.error('Error fetching data:', {error});
@@ -38,8 +40,8 @@ function Courses()
             </div>
         </div>
         <CourseForm sendFormDataToParent={fetchCourses}/>
+        {isCourseLoaded === true && courseData.length === 0 && <div className="text-danger fw-bold text-center">Request yielded no results Please try again.</div>}
         {isLoading === true && <div className="spinner-border mx-auto d-block text-primary" role="status"> <span className="visually-hidden">Loading...</span></div>}
-        {/*<button onClick={fetchCourses}>Get Courses</button>*/}
         <CourseList course={courseData}/>
     </>);
     
