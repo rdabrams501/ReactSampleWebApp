@@ -40,7 +40,7 @@ function Courses()
             </div>
         </div>
         <CourseForm sendFormDataToParent={fetchCourses}/>
-        {isCourseLoaded === true && courseData.length === 0 && <div className="text-danger fw-bold text-center">Request yielded no results Please try again.</div>}
+        {isCourseLoaded === true && courseData && courseData.length === 0 && <div className="text-danger fw-bold text-center">Request yielded no results Please try again.</div>}
         {isLoading === true && <div className="spinner-border mx-auto d-block text-primary" role="status"> <span className="visually-hidden">Loading...</span></div>}
         <CourseList course={courseData}/>
     </>);
