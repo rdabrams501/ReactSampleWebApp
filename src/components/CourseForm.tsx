@@ -38,7 +38,7 @@ function CourseForm({ sendFormDataToParent }: CourseFormProps)
                 <input type="text" className="form-control" id="staffName" name="staffName"  minLength={3} pattern="[a-zA-Z, ]*" title="Field must have a minimum of 3 characters and use only letters, commas, or spaces"/>
                 </div>
                 <div className="form-group col-md-6">
-                    <label htmlFor="staffName">Number of Student Enrolled:</label>
+                    <label htmlFor="studentNum">Number of Student Enrolled (equal to or greater than):</label>
                     <select className="form-control" id="studentNum" name="studentNum">
                         <option>1</option>
                         <option>2</option>
@@ -50,6 +50,7 @@ function CourseForm({ sendFormDataToParent }: CourseFormProps)
                 </div>
             <div className="col-12">
                 <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="reset" className="btn btn-secondary m-1">Clear</button>
             </div>
         </form>
         </>
