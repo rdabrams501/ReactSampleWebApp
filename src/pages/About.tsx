@@ -5,12 +5,12 @@ function About()
     const [currentNum, setCurrentNum] = useState(() => {
     // Read from storage on initial render
     const saved = localStorage.getItem('myData');
-    return saved ? JSON.parse(saved) : '0';
+    return saved ? String(saved) : '0';
     });
 
     useEffect(() => {
     // Write to storage whenever data changes
-    localStorage.setItem('myData', JSON.stringify(currentNum));
+    localStorage.setItem('myData', String(currentNum));
     }, [currentNum]);
 
 
@@ -33,9 +33,9 @@ function About()
 
         <div className="m-2">
             <div className="btn-group" role="group" aria-label="Basic example"  >
-                <button type="button" className="btn btn-secondary" onClick={() => setCurrentNum(currentNum+1)}>Increment</button>
-                <button type="button" className="btn btn-secondary" onClick={() => setCurrentNum(currentNum-1)}>Decrement</button>
-                <button type="button" className="btn btn-secondary" onClick={() => setCurrentNum(0)}>Reset</button>
+                <button type="button" className="btn btn-secondary" onClick={() => setCurrentNum(String(parseInt(currentNum) + 1))}>Increment</button>
+                <button type="button" className="btn btn-secondary" onClick={() => setCurrentNum(String(parseInt(currentNum) - 1))}>Decrement</button>
+                <button type="button" className="btn btn-secondary" onClick={() => setCurrentNum('0')}>Reset</button>
             </div>
         </div>
 
