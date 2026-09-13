@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import type { ICourseData } from "../services/ICourseData";
 
 
+
+//DEPRICATED FOR REMOVAL
 function CourseList({course} : {course: ICourseData[]})
 {
     const [courseList, setCourseList] = useState<ICourseData[]>([]);
