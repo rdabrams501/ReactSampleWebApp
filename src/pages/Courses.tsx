@@ -46,7 +46,7 @@ function Courses()
         <CourseForm sendFormDataToParent={fetchCourses}/>
         {isCourseLoaded === true && courseData && courseData.length === 0 && <div className="text-danger fw-bold text-center">Request yielded no results Please try again.</div>}
         {isLoading === true && <div className="spinner-border mx-auto d-block text-primary" role="status"> <span className="visually-hidden">Loading...</span></div>}
-        <DataList cols={headers} data={courseData}></DataList>
+        <DataList cols={headers} handleDelete={() => {}} handleEdit={() => {}} data={courseData}></DataList>
     </>);
     
 }

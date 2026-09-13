@@ -21,7 +21,7 @@ function StaffForm ({getAllStaffFunc, getStaffName, modalToggler} : StaffFormPro
         <form onSubmit={handleStaffFormSubmit} className="row g-3 m-2">
             <div className="form-group col-md-4">
                 <label htmlFor="staffName">Staff Name:</label>
-                <input type="text" className="form-control" id="staffName" name="staffName" aria-describedby="staffNameHelp" placeholder="Enter Staff Name" pattern="[a-zA-Z, ]*" title="Field must have a minimum of 3 characters and use only letters, commas, or spaces"/>
+                <input type="text" className="form-control" id="staffName" name="staffName" aria-describedby="staffNameHelp" minLength={3} placeholder="Enter Staff Name" pattern="[a-zA-Z, ]*" title="Field must have a minimum of 3 characters and use only letters, commas, or spaces"/>
             </div>
             <div className="col-12">
                 <button type="submit" className="btn btn-primary">Submit</button>

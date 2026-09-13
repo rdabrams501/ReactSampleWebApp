@@ -9,7 +9,6 @@ function Staff() {
 
     const [staffData, setStaffData] = useState<IStaffData[]>([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [isStaffLoaded, setIsStaffLoaded] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [dataResponse, setDataResponse] = useState<Response>();
     const headers = [{header:"Commands", key:"commands"}, {header:"ID", key:"id"}, {header:"Name", key:"name"}, {header:"Title", key:"title"}, {header:"Status", key:"status"}, {header:"Notes", key:"notes"}];
@@ -22,7 +21,6 @@ function Staff() {
                 const staffs = await fetchData(urlPasser);
                 setStaffData(staffs);
                 setIsLoading(false);
-                setIsStaffLoaded(true);
             } catch (error) {
                 alert(error);
                 console.error('Error fetching data:', {error});
@@ -37,7 +35,6 @@ function Staff() {
                 const staffs = await fetchData(urlPasser);
                 setStaffData(staffs);
                 setIsLoading(false);
-                setIsStaffLoaded(true);
             } catch (error) {
                 alert(error);
                 console.error('Error fetching data:', {error});

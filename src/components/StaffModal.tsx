@@ -8,7 +8,7 @@ type StaffModalProps = {
     staffResponse?: Response;
 }
 
-function StaffModal( {onToggleModal, handlePost, staffResponse, modalState}: StaffModalProps) {
+function StaffModal( {onToggleModal, handlePost, staffResponse}: StaffModalProps) {
 
   const [isOkResponse, setIsOkResponse] = useState(false);
   const [isBadResponse, setIsBadResponse] = useState(false);
