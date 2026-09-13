@@ -2,9 +2,10 @@
 type StaffFormProps = {
     getAllStaffFunc: () => void;
     modalToggler: () => void;
+    getStaffName: (name: string) => void;
 }
 
-function StaffForm ({getAllStaffFunc, modalToggler} : StaffFormProps){
+function StaffForm ({getAllStaffFunc, getStaffName, modalToggler} : StaffFormProps){
     
     const handleStaffFormSubmit = (e:any) =>
     {
@@ -12,7 +13,8 @@ function StaffForm ({getAllStaffFunc, modalToggler} : StaffFormProps){
         const formData = new FormData(e.currentTarget);
         const rawStaffName = formData.get("staffName");
         const staffName= rawStaffName ? rawStaffName.toString() : "a";
-        console.log(staffName);
+        //console.log(staffName);
+        getStaffName(staffName);
     }
 
     return <>

@@ -32,6 +32,7 @@ export async function handleStaffPost(stafftoPost: IStaffData) {
                 body: JSON.stringify(stafftoPost),
             });
             console.log(response);
+            return response;
         }
         catch (error: any) {
            console.error('Error posting: ', error);
@@ -64,6 +65,7 @@ export async function handleStaffEdit(stafftoEdit: IStaffData) {
                 body: JSON.stringify(stafftoEdit),
             });
             console.log(response);
+            return response;
         }
         catch (error: any) {
            console.error('Error posting: ', error);

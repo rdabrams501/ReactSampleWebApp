@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import type { IStaffData } from "../services/IStaffData";
-import { handleStaffEdit, handleStaffPost } from "../services/SchoolService";
 
 type StaffEditModalProps = {
     onModalClose: () => void;
+    handleEditStaff: (staffData: any) => void;
     oldStaffData: IStaffData;
+    staffResponse?: Response;
 }
 
-function StaffEditModal( { onModalClose, oldStaffData}: StaffEditModalProps) {
+function StaffEditModal( { onModalClose, handleEditStaff, staffResponse,  oldStaffData}: StaffEditModalProps) {
+
+  const [isOkResponse, setIsOkResponse] = useState(false);
+  const [isBadResponse, setIsBadResponse] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   // Close on Escape key press
   useEffect(() => {
@@ -17,8 +22,22 @@ function StaffEditModal( { onModalClose, oldStaffData}: StaffEditModalProps) {
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
   }, [onModalClose]);
+  
+  useEffect(() => {
+    //console.log(staffResponse);
+    if(staffResponse && staffResponse.ok)
+    {
+      setIsOkResponse(true);
+      setIsBadResponse(false);
+    }
+    else
+    {
+      setIsOkResponse(false);
+      setIsBadResponse(true);
+    }
+  }, [staffResponse]);
 
-  const handleStaffEditSubmit= (e: any) =>
+  const handleStaffEditSubmit= async (e: any) =>
   {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -29,8 +48,9 @@ function StaffEditModal( { onModalClose, oldStaffData}: StaffEditModalProps) {
       status: formData.get("staffStatus") as string, 
       notes: formData.get("staffNotes") as string
      };
-     console.log(staffToEdit);
-     handleStaffEdit(staffToEdit);
+     //console.log(staffToEdit);
+     handleEditStaff(staffToEdit);
+     setIsFormSubmitted(true);
   }
 
   return (
@@ -64,6 +84,8 @@ function StaffEditModal( { onModalClose, oldStaffData}: StaffEditModalProps) {
                 <div className="col-12">
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </div>
+                {isOkResponse && isFormSubmitted && <p className="text-success">Sucessfully modified staff!</p>}
+                {isBadResponse && isFormSubmitted && <p className="text-danger">Failed to modify staff! Please try again or contat admin!</p>}
             </form>
             </div>
             <div className="modal-footer">

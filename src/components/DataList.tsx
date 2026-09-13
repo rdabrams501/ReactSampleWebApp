@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import type { DataColumn } from "../services/DataColumn";
 import type { IStaffData } from "../services/IStaffData";
-import { handleStaffDelete } from "../services/SchoolService";
 import StaffEditModal from "./StaffEditModal";
 
 //Data table prop definitions
 interface DataListProps {
+    handleDelete: (staffData: any) => void;
+    handleEdit: (staffData: any) => void;
     cols: DataColumn[];
     data: any[];
+    resultResponse?: Response;
 }
 
 //Simple reuseable data table where you provide headers and data
-function DataList({cols, data} : DataListProps)
+function DataList({cols, handleDelete, handleEdit, resultResponse, data} : DataListProps)
 {
     const [updatedData, setUpdatedData] = useState<any[]>([]);
     const [showEditModal, setShowEditModal] = useState(false);
@@ -27,7 +29,7 @@ function DataList({cols, data} : DataListProps)
     }, [data]);
 
     //should reunify with staff page for these calls
-    const handleDelete = (staffData: any) => {
+    const handleDeleteStaff = (staffData: any) => {
         console.log(staffData);
         let staffToDelete: IStaffData = {
               id: staffData.id as number,
@@ -36,8 +38,8 @@ function DataList({cols, data} : DataListProps)
               status: staffData.status as string, 
               notes: staffData.notes as string
              };
-             console.log(staffToDelete);
-             handleStaffDelete(staffToDelete);
+             //console.log(staffToDelete);
+             handleDelete(staffToDelete);
     }
 
     const openEditModal = (item: any) =>
@@ -60,7 +62,7 @@ function DataList({cols, data} : DataListProps)
 
     return (
         <>
-        {showEditModal && <StaffEditModal onModalClose={closeEditModal}  oldStaffData={staffToEdit as IStaffData}/>}
+        {showEditModal && <StaffEditModal onModalClose={closeEditModal} handleEditStaff={handleEdit} staffResponse={resultResponse} oldStaffData={staffToEdit as IStaffData}/>}
         <div className="m-3">
             <table className="table table-striped table-hover">
                 <thead>
@@ -77,7 +79,7 @@ function DataList({cols, data} : DataListProps)
                                         item.id > 6 ? (
                                              <div className="btn-group" role="group" aria-label="edit and delete">
                                                 <button type="button" className="btn btn-secondary" onClick={() => openEditModal(item) }>Edit</button>
-                                                <button type="button" className="btn btn-secondary" onClick={() => handleDelete(item)}>Delete</button>
+                                                <button type="button" className="btn btn-secondary" onClick={() => handleDeleteStaff(item)}>Delete</button>
                                             </div>
                                         ) : (
                                            <div className="btn-group" role="group" aria-label="edit">

@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import type { IStaffData } from "../services/IStaffData";
-import { handleStaffPost } from "../services/SchoolService";
 
 type StaffModalProps = {
     onToggleModal: () => void;
+    handlePost: (staffData: any) => void;
     modalState: boolean;
+    staffResponse?: Response;
 }
 
-function StaffModal( {onToggleModal, modalState}: StaffModalProps) {
+function StaffModal( {onToggleModal, handlePost, staffResponse, modalState}: StaffModalProps) {
+
+  const [isOkResponse, setIsOkResponse] = useState(false);
+  const [isBadResponse, setIsBadResponse] = useState(false);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   // Close on Escape key press
   useEffect(() => {
@@ -18,7 +23,20 @@ function StaffModal( {onToggleModal, modalState}: StaffModalProps) {
     return () => window.removeEventListener("keydown", handleEsc);
   }, [onToggleModal]);
 
-  const handleStaffSubmit = (e: any) =>
+  useEffect(() => {
+    if(staffResponse && staffResponse.ok)
+    {
+      setIsOkResponse(true);
+      setIsBadResponse(false);
+    }
+    else
+    {
+      setIsOkResponse(false);
+      setIsBadResponse(true);
+    }
+  }, [staffResponse]);
+
+  const handleStaffSubmit = async (e: any) =>
   {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -29,8 +47,9 @@ function StaffModal( {onToggleModal, modalState}: StaffModalProps) {
       status: formData.get("staffStatus") as string, 
       notes: formData.get("staffNotes") as string
      };
-     console.log(staffToInsert);
-     handleStaffPost(staffToInsert);
+     //console.log(staffToInsert);
+     handlePost(staffToInsert);
+     setIsFormSubmitted(true);
   }
 
   return (
@@ -62,6 +81,8 @@ function StaffModal( {onToggleModal, modalState}: StaffModalProps) {
                 <div className="col-12">
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </div>
+                {isOkResponse && isFormSubmitted && <p className="text-success">New person successfully added to staff!</p>}
+                {isBadResponse && isFormSubmitted && <p className="text-danger">Failed to add person to staff! Please try again or contat admin!</p>}
             </form>
             </div>
             <div className="modal-footer">
