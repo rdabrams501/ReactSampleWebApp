@@ -68,9 +68,9 @@ function StaffEditModal( { onModalClose, handleEditStaff, staffResponse,  oldSta
                     <label htmlFor="staffId">Staff ID:</label>
                     <input type="number" className="form-control" id="staffId" name="staffId" aria-describedby="staffNameHelp" pattern="[a-zA-Z, ]*" defaultValue={oldStaffData.id} disabled/>
                     <label htmlFor="staffName">Staff Name:</label>
-                    <input type="text" className="form-control" id="staffName" name="staffName" aria-describedby="staffNameHelp" defaultValue={oldStaffData.name} title="Field must have a minimum of 3 characters and use only letters, commas, or spaces"/>
+                    <input type="text" className="form-control" id="staffName" name="staffName" aria-describedby="staffNameHelp" minLength={3} required defaultValue={oldStaffData.name} title="Field must have a minimum of 3 characters and use only letters, commas, or spaces"/>
                     <label htmlFor="staffTitle">Staff Title:</label>
-                    <input type="text" className="form-control" id="staffTitle" name="staffTitle" aria-describedby="staffTitleHelp" defaultValue={oldStaffData.title} title="Field must have a minimum of 3 characters and use only letters"/>
+                    <input type="text" className="form-control" id="staffTitle" name="staffTitle" aria-describedby="staffTitleHelp" minLength={3} required defaultValue={oldStaffData.title} title="Field must have a minimum of 3 characters and use only letters"/>
                     <div className="form-group">
                       <label htmlFor="staffStatus">Staff Status:</label>
                       <select className="form-control" id="staffStatus" name="staffStatus">

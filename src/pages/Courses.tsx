@@ -9,10 +9,9 @@ function Courses()
     const [courseData, setCourseData] = useState<ICourseData[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isCourseLoaded, setIsCourseLoaded] = useState(false);
-    const headers = [{header:"Course ID", key:"id"}, {header:"Name", key:"name"}, {header:"Teacher ID", key:"teacherID"}, 
+    const headers = [{header:"Course ID", key:"id"}, {header:"Name", key:"name"}, {header:"Staff Name", key:"staff"}, 
         {header:"Student Count", key:"studentCount"}, {header:"Start Date", key:"startDate"}, {header:"End Date", key:"endDate"},
-        {header:"Notes", key:"notes"}, {header:"Staff Name", key:"staff"}, {header:"Position", key:"position"},
-        {header:"Status", key:"status"}];
+        {header:"Notes", key:"notes"}];
     
     const fetchCourses = async (cId: number, tName: string, sNum: number) => {
         try {
