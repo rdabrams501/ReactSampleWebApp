@@ -83,7 +83,7 @@ function DataList({cols, handleDelete, handleEdit, resultResponse, data} : DataL
                                             </div>
                                         ) : (
                                            <div className="btn-group" role="group" aria-label="edit">
-                                                <button type="button" className="btn btn-secondary">Edit</button>
+                                                <button type="button" className="btn btn-secondary" onClick={() => openEditModal(item) }>Edit</button>
                                             </div>
                                         )
                                     ) : item[col.key]}

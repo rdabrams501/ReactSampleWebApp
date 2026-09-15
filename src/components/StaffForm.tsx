@@ -25,7 +25,7 @@ function StaffForm ({getAllStaffFunc, getStaffName, modalToggler} : StaffFormPro
             </div>
             <div className="col-12">
                 <button type="submit" className="btn btn-primary">Submit</button>
-                <button type="button" className="btn btn-secondary m-1" onClick={getAllStaffFunc}>Get all Staff</button>
+                <button type="reset" className="btn btn-secondary m-1" onClick={getAllStaffFunc}>Get all Staff</button>
                 <button type="button" className="btn btn-secondary m-1" onClick={modalToggler}>Add Staff</button>
             </div>
         </form>
